@@ -83,7 +83,7 @@
                 <div class="d-flex align-items-center pt-5">
                     <a href="\assets\Cletus_Eze_Resume.pdf" class="btn btn-primary py-3 px-4 me-5">Download CV</a>
                     <button type="button" class="btn-play" data-bs-toggle="modal"
-                        data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
+                        data-src="https://www.youtube.com/embed/hPQgZK2vo8c?start=36" data-bs-target="#videoModal">
                         <span></span>
                     </button>
                     <h5 class="ms-4 mb-0 d-none d-sm-block">Play Video</h5>
@@ -141,6 +141,31 @@
         </div>
     </div>
     <!-- Video Modal End -->
+
+
+    <script>
+    var videoModal = document.getElementById('videoModal');
+    var video = document.getElementById('video');
+    var videoSrc;
+
+    // When modal opens → set video src with autoplay
+    videoModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        videoSrc = button.getAttribute('data-src');
+        
+        // convert youtu.be short link to embed if necessary
+        if (videoSrc.includes("youtu.be")) {
+            videoSrc = videoSrc.replace("youtu.be/", "www.youtube.com/embed/");
+        }
+
+        video.setAttribute('src', videoSrc + "?autoplay=1&modestbranding=1&showinfo=0");
+    });
+
+    // When modal closes → clear video src to stop playback
+    videoModal.addEventListener('hidden.bs.modal', function () {
+        video.setAttribute('src', "");
+    });
+</script>
 
 
     <!-- About Start -->
